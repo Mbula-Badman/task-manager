@@ -46,6 +46,13 @@ class TaskAPITests(unittest.TestCase):
     def api_headers(self):
         return {"X-CSRF-Token": self.csrf_token}
 
+    def test_dashboard_shows_summary_and_board_controls(self):
+        response = self.c.get("/")
+        self.assertEqual(response.status_code, 200)
+        for control in (b"stat-completion", b"task-search", b"filter-category", b"filter-status",
+                        b"seed-tasks", b"Export tasks"):
+            self.assertIn(control, response.data)
+
     def test_crud_cycle(self):
         r = self.c.post("/api/tasks", json={"title": "Lab", "category": "Security Lab", "priority": "high"},
                         headers=self.api_headers())

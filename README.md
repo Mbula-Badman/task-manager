@@ -7,8 +7,10 @@ Tasks are organized by category and move through a To do / In progress / Done pi
 - Account registration and login with hashed passwords
 - Private tasks, stats, and CSV exports for each account
 - Full CRUD with validation (title, notes, category, priority, due date, status)
-- Stats dashboard, list view, and drag-and-drop Kanban board
-- Filter by status/category, search, CSV export, and sample data
+- Dashboard summary cards for completion, overdue, and upcoming tasks
+- Search and filter the Kanban board by status or category
+- CSV export and one-click sample tasks for a quick start
+- Responsive dark workspace with a layered, image-free gradient background
 - PostgreSQL through `DATABASE_URL`; SQLite is available only when explicitly enabled
 
 ## Run with PostgreSQL
