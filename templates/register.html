@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="auth-panel">
+  <h1>Create an account</h1>
+  <form method="post" class="auth-form">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" value="{{ email or '' }}" required>
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" minlength="8" required>
+
+    {% if error %}
+      <p class="error-message">{{ error }}</p>
+    {% endif %}
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p class="switch-link">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+  <div class="panel task-create-panel">
+    <h2>Add a task</h2>
+    <form id="task-form" class="task-form">
+      <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+      <div class="form-grid">
+        <div>
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" maxlength="200" required>
+        </div>
+        <div>
+          <label for="category">Category</label>
+          <select id="category" name="category">
+            {% for category in categories %}
+              <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label for="priority">Priority</label>
+          <select id="priority" name="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+        <div>
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="todo" selected>To do</option>
+            <option value="doing">In progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+        <div>
+          <label for="due_date">Due date</label>
+          <input id="due_date" name="due_date" type="date">
+        </div>
+      </div>
+      <div>
+        <label for="notes">Notes</label>
+        <textarea id="notes" name="notes" rows="3"></textarea>
+      </div>
+      <button type="submit">Create task</button>
+    </form>
+  </div>
+
+  <div class="board" id="board">
+    <div class="column" data-status="todo">
+      <h3>To do</h3>
+      <div class="task-list" id="todo-list"></div>
+    </div>
+    <div class="column" data-status="doing">
+      <h3>In progress</h3>
+      <div class="task-list" id="doing-list"></div>
+    </div>
+    <div class="column" data-status="done">
+      <h3>Done</h3>
+      <div class="task-list" id="done-list"></div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}
